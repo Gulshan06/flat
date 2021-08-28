@@ -18,7 +18,7 @@ def add_page(request):
     return render(request,'add.html')
 
 def view_page(request):
-    flatdata = requests.get("http://127.0.0.1:8000/flats/all/").json()
+    flatdata = requests.get("http://13.126.238.231:8000/flats/all/").json()
     return render(request,"view.html",{'data':flatdata})
 
 def search_page(request):
@@ -114,7 +114,7 @@ def update_flat(request):
     mydata= {"id":getid,"bulding_no":getbuilding_no,"owner_name":getownername,"address":getaddress,"mobile_no":getmobile_no,"adhar_no":getadhar_no,"emailid":getemailid,"password":getpassword}
     jsondata=json.dumps(mydata)
     print(jsondata)
-    apilink = "http://127.0.0.1:8000/flats/update/"+str(getbuilding_no)
+    apilink = "http://13.126.238.231:8000/flats/update/"+str(getbuilding_no)
     requests.put(apilink, data=jsondata)
     return redirect(view_page)
 
@@ -137,7 +137,7 @@ def deleteapi(request):
 @csrf_exempt
 def delete_data(request): 
     getno = request.POST.get("newbuilding_no")
-    apilink = "http://127.0.0.1:8000/flats/update/"+str(getno)
+    apilink = "http://13.126.238.231:8000/flats/update/"+str(getno)
     requests.delete(apilink)
     # return HttpResponse('Data has deleted successfully')
     return redirect(view_page)
